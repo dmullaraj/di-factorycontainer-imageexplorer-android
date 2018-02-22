@@ -2,6 +2,7 @@ package al.dmullaraj.di.factorycontainerimageexplorer.ui.activity.moviegrid;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
@@ -19,7 +20,8 @@ import al.dmullaraj.di.factorycontainerimageexplorer.application.network.ClientL
 import al.dmullaraj.di.factorycontainerimageexplorer.domain.data.model.PopularTvShowResponse;
 import al.dmullaraj.di.factorycontainerimageexplorer.domain.data.model.TvShow;
 import al.dmullaraj.di.factorycontainerimageexplorer.domain.listener.OnGridMovieViewClickListener;
-import al.dmullaraj.di.factorycontainerimageexplorer.ui.adapter.MovieGridAdapter;
+import al.dmullaraj.di.factorycontainerimageexplorer.ui.adapter.moviegridoverview.MovieGridAdapter;
+import al.dmullaraj.di.factorycontainerimageexplorer.ui.fragment.moviedetail.FullScreenMovieSliderDialogFragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -84,6 +86,11 @@ public class MovieGridActivity extends AppCompatActivity implements OnGridMovieV
 
     @Override
     public void onMovieClicked(int position) {
-
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        FullScreenMovieSliderDialogFragment fragment = FullScreenMovieSliderDialogFragment.newInstance(
+                mTvShowList,
+                position
+        );
+        fragment.show(ft, FullScreenMovieSliderDialogFragment.TAG);
     }
 }

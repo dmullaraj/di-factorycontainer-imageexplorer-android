@@ -1,4 +1,4 @@
-package al.dmullaraj.di.factorycontainerimageexplorer.ui.adapter;
+package al.dmullaraj.di.factorycontainerimageexplorer.ui.adapter.moviegridoverview;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
