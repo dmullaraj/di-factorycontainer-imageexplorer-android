@@ -18,6 +18,7 @@ import al.dmullaraj.di.factorycontainerimageexplorer.application.classfactory.Cl
 import al.dmullaraj.di.factorycontainerimageexplorer.application.network.ClientListener;
 import al.dmullaraj.di.factorycontainerimageexplorer.domain.data.model.PopularTvShowResponse;
 import al.dmullaraj.di.factorycontainerimageexplorer.domain.data.model.TvShow;
+import al.dmullaraj.di.factorycontainerimageexplorer.domain.listener.OnGridMovieViewClickListener;
 import al.dmullaraj.di.factorycontainerimageexplorer.ui.adapter.MovieGridAdapter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,7 +27,7 @@ import butterknife.ButterKnife;
  * Created by denis.mullaraj on 22/02/2018.
  */
 
-public class MovieGridActivity extends AppCompatActivity {
+public class MovieGridActivity extends AppCompatActivity implements OnGridMovieViewClickListener {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -46,7 +47,7 @@ public class MovieGridActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         mTvShowList = new ArrayList<>();
-        mMovieGridAdapter = new MovieGridAdapter(this, mTvShowList);
+        mMovieGridAdapter = new MovieGridAdapter(this, mTvShowList, this);
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
         movieGridRecyclerView.setLayoutManager(gridLayoutManager);
@@ -79,5 +80,10 @@ public class MovieGridActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         ClassWiring.getClassFactory().getRequestQueue().getClientApi().emptyRequestQueue();
+    }
+
+    @Override
+    public void onMovieClicked(int position) {
+
     }
 }

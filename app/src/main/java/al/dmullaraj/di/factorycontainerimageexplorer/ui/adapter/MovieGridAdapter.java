@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import al.dmullaraj.di.factorycontainerimageexplorer.R;
 import al.dmullaraj.di.factorycontainerimageexplorer.domain.data.model.TvShow;
+import al.dmullaraj.di.factorycontainerimageexplorer.domain.listener.OnGridMovieViewClickListener;
 
 /**
  * Created by denis.mullaraj on 22/02/2018.
@@ -23,10 +24,12 @@ public class MovieGridAdapter extends RecyclerView.Adapter<MovieGridAdapter.Movi
 
     private Context mContext;
     private ArrayList<TvShow> mTvShowList;
+    private OnGridMovieViewClickListener mOnGridMovieViewClickListener;
 
-    public MovieGridAdapter(Context context, ArrayList<TvShow> tvShows) {
+    public MovieGridAdapter(Context context, ArrayList<TvShow> tvShows, OnGridMovieViewClickListener onGridMovieViewClickListener) {
         mContext = context;
         mTvShowList = tvShows;
+        mOnGridMovieViewClickListener = onGridMovieViewClickListener;
     }
 
     @Override
@@ -52,13 +55,19 @@ public class MovieGridAdapter extends RecyclerView.Adapter<MovieGridAdapter.Movi
         return mTvShowList.size();
     }
 
-    class MovieViewHolder extends RecyclerView.ViewHolder {
+    class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView imageView;
 
         MovieViewHolder(View view){
             super(view);
 
             imageView = view.findViewById(R.id.movie_griview_item);
+            view.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            mOnGridMovieViewClickListener.onMovieClicked(getLayoutPosition());
         }
     }
 
