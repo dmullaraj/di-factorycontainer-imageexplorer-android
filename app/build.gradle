@@ -10,10 +10,26 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    def keys = new Properties()
+    file("../keys.properties").withInputStream {
+        stream -> keys.load(stream)
+    }
     buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        buildTypes {
+            release {
+                debuggable false
+                minifyEnabled true
+                shrinkResources true
+                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+                buildConfigField "String", "API_KEY", "\"" + keys.API_KEY_PRODUCTION + "\""
+            }
+
+            debug {
+                applicationIdSuffix '.debug'
+                versionNameSuffix '-debug'
+                debuggable true
+                buildConfigField "String", "API_KEY", "\"" + keys.API_KEY_DEVELOPMENT + "\""
+            }
         }
     }
 }
@@ -28,6 +44,8 @@ dependencies {
 
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
+    implementation 'com.android.volley:volley:1.0.0'
 
     implementation 'com.github.bumptech.glide:glide:3.8.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.5.0'
