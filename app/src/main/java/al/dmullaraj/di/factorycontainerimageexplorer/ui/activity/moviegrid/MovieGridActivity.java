@@ -64,12 +64,12 @@ public class MovieGridActivity extends AppCompatActivity {
 
                             @Override
                             public void onSuccess(PopularTvShowResponse r) {
-                                Log.d("NetworkCall", "Success");
-                            }
+                                mTvShowList.addAll(r.getTvShowList());
+                                mMovieGridAdapter.notifyDataSetChanged();                            }
 
                             @Override
                             public void onFailure(VolleyError e) {
-                                Log.d("NetworkCall", "Failed");
+                                Log.d("ErrorLog", e.getMessage());
                             }
                         }
                 );

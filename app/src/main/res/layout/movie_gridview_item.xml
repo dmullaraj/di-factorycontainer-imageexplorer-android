@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<al.dmullaraj.di.factorycontainerimageexplorer.ui.component.SquareWidthLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/movie_gridview_background">
@@ -11,4 +12,4 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"/>
 
-</RelativeLayout>
+</al.dmullaraj.di.factorycontainerimageexplorer.ui.component.SquareWidthLayout>

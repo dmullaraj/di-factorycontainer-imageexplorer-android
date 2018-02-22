@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 
+def googleSupportVersion = '26.1.0'
+
 android {
     compileSdkVersion 26
     defaultConfig {
@@ -40,11 +42,10 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation "com.android.support:appcompat-v7:$googleSupportVersion"
+    implementation "com.android.support:design:$googleSupportVersion"
 
     implementation 'com.google.code.gson:gson:2.8.0'
-
-    implementation 'com.android.support:design:26.1.0'
 
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
