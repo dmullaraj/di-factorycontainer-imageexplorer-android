@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 import al.dmullaraj.di.factorycontainerimageexplorer.R;
 import al.dmullaraj.di.factorycontainerimageexplorer.domain.data.model.TvShow;
-import al.dmullaraj.di.factorycontainerimageexplorer.domain.listener.OnGridMovieViewClickListener;
+import al.dmullaraj.di.factorycontainerimageexplorer.domain.listener.moviegrid.OnGridMovieViewClickListener;
 
 /**
  * Created by denis.mullaraj on 22/02/2018.

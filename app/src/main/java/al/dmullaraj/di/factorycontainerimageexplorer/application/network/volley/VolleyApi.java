@@ -31,9 +31,9 @@ public class VolleyApi implements ClientApi {
     public void retrieveMovieList(int index, final ClientListener listener) {
         final String popular_tv_show_path = "3/tv/popular";
 
-        Response.Listener photosResponseListener = (Response.Listener<PopularTvShowResponse>) response -> listener.onSuccess(response);
+        Response.Listener photosResponseListener = (Response.Listener<PopularTvShowResponse>) listener::onSuccess;
 
-        Response.ErrorListener errorListener = error -> listener.onFailure(error);
+        Response.ErrorListener errorListener = listener::onFailure;
 
         Map<String, String> jsonParams = new HashMap<>();
         jsonParams.put("language", "en");

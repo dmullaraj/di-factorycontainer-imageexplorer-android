@@ -19,7 +19,8 @@ import al.dmullaraj.di.factorycontainerimageexplorer.application.classfactory.Cl
 import al.dmullaraj.di.factorycontainerimageexplorer.application.network.ClientListener;
 import al.dmullaraj.di.factorycontainerimageexplorer.domain.data.model.PopularTvShowResponse;
 import al.dmullaraj.di.factorycontainerimageexplorer.domain.data.model.TvShow;
-import al.dmullaraj.di.factorycontainerimageexplorer.domain.listener.OnGridMovieViewClickListener;
+import al.dmullaraj.di.factorycontainerimageexplorer.domain.listener.moviegrid.EndlessRecyclerViewScrollListener;
+import al.dmullaraj.di.factorycontainerimageexplorer.domain.listener.moviegrid.OnGridMovieViewClickListener;
 import al.dmullaraj.di.factorycontainerimageexplorer.ui.adapter.moviegridoverview.MovieGridAdapter;
 import al.dmullaraj.di.factorycontainerimageexplorer.ui.fragment.moviedetail.FullScreenMovieSliderDialogFragment;
 import butterknife.BindView;
@@ -40,6 +41,7 @@ public class MovieGridActivity extends AppCompatActivity implements OnGridMovieV
     private final static int STARTING_PAGE = 1;
     private MovieGridAdapter mMovieGridAdapter;
     private ArrayList<TvShow> mTvShowList;
+    private int maxNrOfPages = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,6 +57,14 @@ public class MovieGridActivity extends AppCompatActivity implements OnGridMovieV
         movieGridRecyclerView.setLayoutManager(gridLayoutManager);
         movieGridRecyclerView.setItemAnimator(new DefaultItemAnimator());
         movieGridRecyclerView.setAdapter(mMovieGridAdapter);
+        movieGridRecyclerView.addOnScrollListener(new EndlessRecyclerViewScrollListener(gridLayoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount) {
+                if (page > 0 && page <= maxNrOfPages) {
+                    getMovies(page);
+                }
+            }
+        });
 
         getMovies(STARTING_PAGE);
     }
@@ -67,6 +77,7 @@ public class MovieGridActivity extends AppCompatActivity implements OnGridMovieV
 
                             @Override
                             public void onSuccess(PopularTvShowResponse r) {
+                                maxNrOfPages = r.getTotal_pages();
                                 mTvShowList.addAll(r.getTvShowList());
                                 mMovieGridAdapter.notifyDataSetChanged();                            }
 
