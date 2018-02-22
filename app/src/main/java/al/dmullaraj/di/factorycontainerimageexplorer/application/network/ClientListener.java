@@ -4,10 +4,9 @@ package al.dmullaraj.di.factorycontainerimageexplorer.application.network;
  * Created by denis.mullaraj on 22/02/2018.
  */
 
-public interface ClientApi {
+public interface ClientListener<T, E extends Exception> {
 
-    void retrieveMovieList(int index, ClientListener listener);
-
-    void emptyRequestQueue();
+    void onSuccess(T r);
+    void onFailure(E e);
 
 }

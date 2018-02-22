@@ -7,10 +7,16 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+
+import com.android.volley.VolleyError;
 
 import java.util.ArrayList;
 
 import al.dmullaraj.di.factorycontainerimageexplorer.R;
+import al.dmullaraj.di.factorycontainerimageexplorer.application.classfactory.ClassWiring;
+import al.dmullaraj.di.factorycontainerimageexplorer.application.network.ClientListener;
+import al.dmullaraj.di.factorycontainerimageexplorer.domain.data.model.PopularTvShowResponse;
 import al.dmullaraj.di.factorycontainerimageexplorer.domain.data.model.TvShow;
 import al.dmullaraj.di.factorycontainerimageexplorer.ui.adapter.MovieGridAdapter;
 import butterknife.BindView;
@@ -28,6 +34,7 @@ public class MovieGridActivity extends AppCompatActivity {
     @BindView(R.id.movie_grid_recycler_view)
     RecyclerView movieGridRecyclerView;
 
+    private final static int STARTING_PAGE = 1;
     private MovieGridAdapter mMovieGridAdapter;
     private ArrayList<TvShow> mTvShowList;
 
@@ -41,9 +48,36 @@ public class MovieGridActivity extends AppCompatActivity {
         mTvShowList = new ArrayList<>();
         mMovieGridAdapter = new MovieGridAdapter(this, mTvShowList);
 
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 3);
-        movieGridRecyclerView.setLayoutManager(layoutManager);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
+        movieGridRecyclerView.setLayoutManager(gridLayoutManager);
         movieGridRecyclerView.setItemAnimator(new DefaultItemAnimator());
         movieGridRecyclerView.setAdapter(mMovieGridAdapter);
+
+        getMovies(STARTING_PAGE);
+    }
+
+    private void getMovies(int index) {
+        ClassWiring.getClassFactory().getRequestQueue().getClientApi()
+                .retrieveMovieList(
+                        index,
+                        new ClientListener<PopularTvShowResponse, VolleyError>() {
+
+                            @Override
+                            public void onSuccess(PopularTvShowResponse r) {
+                                Log.d("NetworkCall", "Success");
+                            }
+
+                            @Override
+                            public void onFailure(VolleyError e) {
+                                Log.d("NetworkCall", "Failed");
+                            }
+                        }
+                );
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ClassWiring.getClassFactory().getRequestQueue().getClientApi().emptyRequestQueue();
     }
 }
