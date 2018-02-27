@@ -1,4 +1,4 @@
-package al.dmullaraj.di.factorycontainerimageexplorer.ui.activity.moviegrid;
+package al.dmullaraj.di.factorycontainerimageexplorer.ui.moviegrid.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -19,10 +19,10 @@ import al.dmullaraj.di.factorycontainerimageexplorer.application.classfactory.Cl
 import al.dmullaraj.di.factorycontainerimageexplorer.application.network.ClientListener;
 import al.dmullaraj.di.factorycontainerimageexplorer.domain.data.model.PopularTvShowResponse;
 import al.dmullaraj.di.factorycontainerimageexplorer.domain.data.model.TvShow;
-import al.dmullaraj.di.factorycontainerimageexplorer.domain.listener.moviegrid.EndlessRecyclerViewScrollListener;
-import al.dmullaraj.di.factorycontainerimageexplorer.domain.listener.moviegrid.OnGridMovieViewClickListener;
-import al.dmullaraj.di.factorycontainerimageexplorer.ui.adapter.moviegridoverview.MovieGridAdapter;
-import al.dmullaraj.di.factorycontainerimageexplorer.ui.fragment.moviedetail.FullScreenMovieSliderDialogFragment;
+import al.dmullaraj.di.factorycontainerimageexplorer.ui.moviegrid.listener.EndlessRecyclerViewScrollListener;
+import al.dmullaraj.di.factorycontainerimageexplorer.ui.moviegrid.listener.OnGridMovieViewClickListener;
+import al.dmullaraj.di.factorycontainerimageexplorer.ui.moviegrid.adapter.MovieGridAdapter;
+import al.dmullaraj.di.factorycontainerimageexplorer.ui.fullscreenmovie.fragment.FullScreenMovieSliderDialogFragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 

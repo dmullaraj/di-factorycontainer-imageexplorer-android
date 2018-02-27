@@ -1,4 +1,4 @@
-package al.dmullaraj.di.factorycontainerimageexplorer.ui.adapter.moviedetail;
+package al.dmullaraj.di.factorycontainerimageexplorer.ui.fullscreenmovie.adapter;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;

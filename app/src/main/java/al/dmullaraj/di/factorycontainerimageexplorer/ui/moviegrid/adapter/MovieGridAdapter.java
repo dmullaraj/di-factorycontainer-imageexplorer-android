@@ -1,4 +1,4 @@
-package al.dmullaraj.di.factorycontainerimageexplorer.ui.adapter.moviegridoverview;
+package al.dmullaraj.di.factorycontainerimageexplorer.ui.moviegrid.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 import al.dmullaraj.di.factorycontainerimageexplorer.R;
 import al.dmullaraj.di.factorycontainerimageexplorer.domain.data.model.TvShow;
-import al.dmullaraj.di.factorycontainerimageexplorer.domain.listener.moviegrid.OnGridMovieViewClickListener;
+import al.dmullaraj.di.factorycontainerimageexplorer.ui.moviegrid.listener.OnGridMovieViewClickListener;
 
 /**
  * Created by denis.mullaraj on 22/02/2018.

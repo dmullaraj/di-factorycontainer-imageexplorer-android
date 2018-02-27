@@ -1,4 +1,4 @@
-package al.dmullaraj.di.factorycontainerimageexplorer.domain.listener.moviegrid;
+package al.dmullaraj.di.factorycontainerimageexplorer.ui.moviegrid.listener;
 
 /**
  * Created by denis.mullaraj on 22/02/2018.

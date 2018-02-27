@@ -1,4 +1,4 @@
-package al.dmullaraj.di.factorycontainerimageexplorer.ui.fragment.moviedetail;
+package al.dmullaraj.di.factorycontainerimageexplorer.ui.fullscreenmovie.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 import al.dmullaraj.di.factorycontainerimageexplorer.R;
 import al.dmullaraj.di.factorycontainerimageexplorer.domain.data.model.TvShow;
-import al.dmullaraj.di.factorycontainerimageexplorer.ui.adapter.moviedetail.FullScreenMovieSliderPagerAdapter;
+import al.dmullaraj.di.factorycontainerimageexplorer.ui.fullscreenmovie.adapter.FullScreenMovieSliderPagerAdapter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
